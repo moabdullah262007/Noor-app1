@@ -1,0 +1,3214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>القرآن الكريم — القراءة والاستماع</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    
+
+    <link rel="manifest" href="/manifest.json">
+
+    <meta name="theme-color" content="#2D6A4F">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="القرآن">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/icons/icon-192.png">
+    <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+
+</head>
+
+
+<body data-logged-in="false">
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">
+                <i class="fas fa-book-open"></i>
+                <span>القرآن الكريم</span>
+            </a>
+
+            <div class="nav-links" id="nav-links">
+
+                <!-- الرئيسية -->
+                <a href="/"
+                   class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </a>
+
+                <!-- البحث -->
+                <a href="/search"
+                   class="nav-link ">
+                    <i class="fas fa-search"></i>
+                    <span>البحث</span>
+                </a>
+
+                <!-- الأذكار -->
+                <a href="/adhkar"
+                   class="nav-link ">
+                    <i class="fas fa-hands-praying"></i>
+                    <span>الأذكار</span>
+                </a>
+
+                <!-- المصحف -->
+                <a href="/mushaf"
+                   class="nav-link ">
+                    <i class="fas fa-book-quran"></i>
+                    <span>المصحف</span>
+                </a>
+
+                <!-- المكتبة -->
+                <a href="/library"
+                   class="nav-link ">
+                    <i class="fas fa-book-open"></i>
+                    <span>المكتبة</span>
+                </a>
+
+                <div class="nav-dropdown">
+
+                    <button type="button" class="nav-link nav-dropdown-btn">
+
+                        <span>المزيد</span>
+
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+
+                    </button>
+
+                    <div class="nav-dropdown-menu">
+
+                        <a href="/tasbeeh">
+                            <i class="fas fa-circle-notch"></i>
+                            <span>السبحة</span>
+                        </a>
+
+                        <a href="/quiz">
+                            <i class="fas fa-brain"></i>
+                            <span>اختبر حفظك</span>
+                        </a>
+
+                        <a href="/prayer">
+                            <i class="fas fa-mosque"></i>
+                            <span>الصلاة</span>
+                        </a>
+
+                        
+
+                    </div>
+
+                </div>
+
+                
+
+                <a href="/login"
+                   class="nav-link ">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>دخول</span>
+                </a>
+
+                <a href="/register"
+                   class="nav-link ">
+                    <i class="fas fa-user-plus"></i>
+                    <span>تسجيل</span>
+                </a>
+
+                
+
+            </div>
+
+            <div class="nav-actions">
+                <button class="dark-mode-toggle" id="darkModeToggle" title="تبديل الوضع المظلم">
+                    <i class="fas fa-moon" id="darkModeIcon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+
+        <div class="mobile-menu-links">
+
+            <a href="/"
+               class="mobile-menu-link">
+
+                <i class="fas fa-home"></i>
+                <span>الرئيسية</span>
+
+            </a>
+
+            <!-- البحث -->
+            <a href="/search"
+               class="mobile-menu-link">
+
+                <i class="fas fa-search"></i>
+                <span>البحث</span>
+
+            </a>
+
+            <!-- التسبيح -->
+            <a href="/tasbeeh"
+               class="mobile-menu-link">
+
+                <i class="fas fa-circle-notch"></i>
+                <span>السبحة</span>
+
+            </a>
+
+            <a href="/adhkar" class="mobile-menu-link">
+                <i class="fas fa-hands-praying"></i>
+                <span>الأذكار</span>
+            </a>
+
+            <!-- المصحف -->
+            <a href="/mushaf"
+               class="mobile-menu-link">
+
+                <i class="fas fa-book-quran"></i>
+                <span>المصحف</span>
+
+            </a>
+
+            <!-- المكتبة -->
+            <a href="/library"
+               class="mobile-menu-link">
+
+                <i class="fas fa-book-open"></i>
+                <span>المكتبة</span>
+
+            </a>
+
+            <!-- اختبر حفظك -->
+            <a href="/quiz"
+               class="mobile-menu-link">
+
+                <i class="fas fa-brain"></i>
+                <span>اختبر حفظك</span>
+
+            </a>
+
+            <!-- الصلاة والقبلة -->
+            <a href="/prayer"
+               class="mobile-menu-link">
+
+                <i class="fas fa-mosque"></i>
+                <span>الصلاة</span>
+
+            </a>
+
+            
+
+            <a href="/login"
+               class="mobile-menu-link">
+
+                <i class="fas fa-sign-in-alt"></i>
+                <span>دخول</span>
+
+            </a>
+
+            <a href="/register"
+               class="mobile-menu-link">
+
+                <i class="fas fa-user-plus"></i>
+                <span>تسجيل</span>
+
+            </a>
+
+            
+
+        </div>
+
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">القرآن الكريم</h1>
+        <p class="hero-subtitle">كتاب الله تعالى — نور وهدى للعالمين</p>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="stats-section">
+    <div class="stats-container">
+        <div class="stat-item">
+            <i class="fas fa-book-open stat-icon"></i>
+            <span class="stat-number">114</span>
+            <span class="stat-label">سورة</span>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-list stat-icon"></i>
+            <span class="stat-number">6236</span>
+            <span class="stat-label">آية</span>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-clock stat-icon"></i>
+            <span class="stat-number">30</span>
+            <span class="stat-label">جزء</span>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-star stat-icon"></i>
+            <span class="stat-number">15</span>
+            <span class="stat-label">سجدة</span>
+        </div>
+    </div>
+</section>
+
+<!-- Search Section -->
+<section class="search-section">
+    <div class="search-container">
+        <div class="search-bar">
+            <button class="search-btn" id="searchBtn" title="بحث">
+                <i class="fas fa-search"></i>
+            </button>
+            <input
+                type="text"
+                class="search-input"
+                id="searchInput"
+                placeholder="ابحث عن سورة..."
+                value=""
+                autocomplete="off"
+            >
+        </div>
+    </div>
+</section>
+
+
+<!-- ✅ زر أكمل من حيث توقفت -->
+<section class="resume-section">
+    <div class="resume-button-wrapper">
+
+        <button id="resumeProgressBtn" class="resume-progress-btn">
+            <span class="resume-icon">
+                <i class="fas fa-book-open"></i>
+            </span>
+
+            <span>أكمل من حيث توقفت</span>
+        </button>
+
+    </div>
+</section>
+
+<!-- Surah Cards Grid -->
+<section class="surahs-section">
+    <div class="surahs-container" id="surahsContainer">
+        
+        <div class="surah-card" data-name="الفاتحة" data-en="Al-Fatiha" data-trans="AL-FATIHA" data-number="1">
+           <button class="fav-star "
+        data-surah-id="1"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/1" class="surah-card-link">
+                <div class="surah-number-badge">1</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الفاتحة</h3>
+                    <p class="surah-transliteration">AL-FATIHA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 7
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="البقرة" data-en="Al-Baqarah" data-trans="AL-BAQARAH" data-number="2">
+           <button class="fav-star "
+        data-surah-id="2"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/2" class="surah-card-link">
+                <div class="surah-number-badge">2</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة البقرة</h3>
+                    <p class="surah-transliteration">AL-BAQARAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 286
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="آل عمران" data-en="Aal-E-Imran" data-trans="AAL-I-IMRAAN" data-number="3">
+           <button class="fav-star "
+        data-surah-id="3"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/3" class="surah-card-link">
+                <div class="surah-number-badge">3</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة آل عمران</h3>
+                    <p class="surah-transliteration">AAL-I-IMRAAN</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 200
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="النساء" data-en="An-Nisa" data-trans="AN-NISAA" data-number="4">
+           <button class="fav-star "
+        data-surah-id="4"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/4" class="surah-card-link">
+                <div class="surah-number-badge">4</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة النساء</h3>
+                    <p class="surah-transliteration">AN-NISAA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 176
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="المائدة" data-en="Al-Maidah" data-trans="AL-MAAI&#39;DAH" data-number="5">
+           <button class="fav-star "
+        data-surah-id="5"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/5" class="surah-card-link">
+                <div class="surah-number-badge">5</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة المائدة</h3>
+                    <p class="surah-transliteration">AL-MAAI&#39;DAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 120
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الأنعام" data-en="Al-Anam" data-trans="AL-AN&#39;AAM" data-number="6">
+           <button class="fav-star "
+        data-surah-id="6"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/6" class="surah-card-link">
+                <div class="surah-number-badge">6</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الأنعام</h3>
+                    <p class="surah-transliteration">AL-AN&#39;AAM</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 165
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الأعراف" data-en="Al-Araf" data-trans="AL-A&#39;RAAF" data-number="7">
+           <button class="fav-star "
+        data-surah-id="7"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/7" class="surah-card-link">
+                <div class="surah-number-badge">7</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الأعراف</h3>
+                    <p class="surah-transliteration">AL-A&#39;RAAF</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 206
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الأنفال" data-en="Al-Anfal" data-trans="AL-ANFAAL" data-number="8">
+           <button class="fav-star "
+        data-surah-id="8"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/8" class="surah-card-link">
+                <div class="surah-number-badge">8</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الأنفال</h3>
+                    <p class="surah-transliteration">AL-ANFAAL</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 75
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="التوبة" data-en="At-Tawbah" data-trans="AT-TAWBAH" data-number="9">
+           <button class="fav-star "
+        data-surah-id="9"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/9" class="surah-card-link">
+                <div class="surah-number-badge">9</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة التوبة</h3>
+                    <p class="surah-transliteration">AT-TAWBAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 129
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="يونس" data-en="Yunus" data-trans="YUNUS" data-number="10">
+           <button class="fav-star "
+        data-surah-id="10"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/10" class="surah-card-link">
+                <div class="surah-number-badge">10</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة يونس</h3>
+                    <p class="surah-transliteration">YUNUS</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 109
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="هود" data-en="Hud" data-trans="HUD" data-number="11">
+           <button class="fav-star "
+        data-surah-id="11"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/11" class="surah-card-link">
+                <div class="surah-number-badge">11</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة هود</h3>
+                    <p class="surah-transliteration">HUD</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 123
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="يوسف" data-en="Yusuf" data-trans="YUSUF" data-number="12">
+           <button class="fav-star "
+        data-surah-id="12"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/12" class="surah-card-link">
+                <div class="surah-number-badge">12</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة يوسف</h3>
+                    <p class="surah-transliteration">YUSUF</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 111
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الرعد" data-en="Ar-Rad" data-trans="AR-RAD" data-number="13">
+           <button class="fav-star "
+        data-surah-id="13"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/13" class="surah-card-link">
+                <div class="surah-number-badge">13</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الرعد</h3>
+                    <p class="surah-transliteration">AR-RAD</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 43
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="إبراهيم" data-en="Ibrahim" data-trans="IBRAHIM" data-number="14">
+           <button class="fav-star "
+        data-surah-id="14"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/14" class="surah-card-link">
+                <div class="surah-number-badge">14</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة إبراهيم</h3>
+                    <p class="surah-transliteration">IBRAHIM</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 52
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الحجر" data-en="Al-Hijr" data-trans="AL-HIJR" data-number="15">
+           <button class="fav-star "
+        data-surah-id="15"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/15" class="surah-card-link">
+                <div class="surah-number-badge">15</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الحجر</h3>
+                    <p class="surah-transliteration">AL-HIJR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 99
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="النحل" data-en="An-Nahl" data-trans="AN-NAHL" data-number="16">
+           <button class="fav-star "
+        data-surah-id="16"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/16" class="surah-card-link">
+                <div class="surah-number-badge">16</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة النحل</h3>
+                    <p class="surah-transliteration">AN-NAHL</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 128
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الإسراء" data-en="Al-Isra" data-trans="AL-ISRA" data-number="17">
+           <button class="fav-star "
+        data-surah-id="17"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/17" class="surah-card-link">
+                <div class="surah-number-badge">17</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الإسراء</h3>
+                    <p class="surah-transliteration">AL-ISRA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 111
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الكهف" data-en="Al-Kahf" data-trans="AL-KAHF" data-number="18">
+           <button class="fav-star "
+        data-surah-id="18"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/18" class="surah-card-link">
+                <div class="surah-number-badge">18</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الكهف</h3>
+                    <p class="surah-transliteration">AL-KAHF</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 110
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="مريم" data-en="Maryam" data-trans="MARYAM" data-number="19">
+           <button class="fav-star "
+        data-surah-id="19"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/19" class="surah-card-link">
+                <div class="surah-number-badge">19</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة مريم</h3>
+                    <p class="surah-transliteration">MARYAM</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 98
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="طه" data-en="Ta-Ha" data-trans="TAAHAA" data-number="20">
+           <button class="fav-star "
+        data-surah-id="20"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/20" class="surah-card-link">
+                <div class="surah-number-badge">20</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة طه</h3>
+                    <p class="surah-transliteration">TAAHAA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 135
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الأنبياء" data-en="Al-Anbiya" data-trans="AL-ANBIYAA" data-number="21">
+           <button class="fav-star "
+        data-surah-id="21"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/21" class="surah-card-link">
+                <div class="surah-number-badge">21</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الأنبياء</h3>
+                    <p class="surah-transliteration">AL-ANBIYAA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 112
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الحج" data-en="Al-Hajj" data-trans="AL-HAJJ" data-number="22">
+           <button class="fav-star "
+        data-surah-id="22"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/22" class="surah-card-link">
+                <div class="surah-number-badge">22</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الحج</h3>
+                    <p class="surah-transliteration">AL-HAJJ</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 78
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="المؤمنون" data-en="Al-Muminun" data-trans="AL-MU&#39;MINOON" data-number="23">
+           <button class="fav-star "
+        data-surah-id="23"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/23" class="surah-card-link">
+                <div class="surah-number-badge">23</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة المؤمنون</h3>
+                    <p class="surah-transliteration">AL-MU&#39;MINOON</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 118
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="النور" data-en="An-Nur" data-trans="AN-NOOR" data-number="24">
+           <button class="fav-star "
+        data-surah-id="24"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/24" class="surah-card-link">
+                <div class="surah-number-badge">24</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة النور</h3>
+                    <p class="surah-transliteration">AN-NOOR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 64
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الفرقان" data-en="Al-Furqan" data-trans="AL-FURQAAN" data-number="25">
+           <button class="fav-star "
+        data-surah-id="25"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/25" class="surah-card-link">
+                <div class="surah-number-badge">25</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الفرقان</h3>
+                    <p class="surah-transliteration">AL-FURQAAN</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 77
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الشعراء" data-en="Ash-Shuara" data-trans="ASH-SHU&#39;ARAA" data-number="26">
+           <button class="fav-star "
+        data-surah-id="26"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/26" class="surah-card-link">
+                <div class="surah-number-badge">26</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الشعراء</h3>
+                    <p class="surah-transliteration">ASH-SHU&#39;ARAA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 227
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="النمل" data-en="An-Naml" data-trans="AN-NAML" data-number="27">
+           <button class="fav-star "
+        data-surah-id="27"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/27" class="surah-card-link">
+                <div class="surah-number-badge">27</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة النمل</h3>
+                    <p class="surah-transliteration">AN-NAML</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 93
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="القصص" data-en="Al-Qasas" data-trans="AL-QASAS" data-number="28">
+           <button class="fav-star "
+        data-surah-id="28"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/28" class="surah-card-link">
+                <div class="surah-number-badge">28</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة القصص</h3>
+                    <p class="surah-transliteration">AL-QASAS</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 88
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="العنكبوت" data-en="Al-Ankabut" data-trans="AL-&#39;ANKABOOT" data-number="29">
+           <button class="fav-star "
+        data-surah-id="29"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/29" class="surah-card-link">
+                <div class="surah-number-badge">29</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة العنكبوت</h3>
+                    <p class="surah-transliteration">AL-&#39;ANKABOOT</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 69
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الروم" data-en="Ar-Rum" data-trans="AR-ROOM" data-number="30">
+           <button class="fav-star "
+        data-surah-id="30"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/30" class="surah-card-link">
+                <div class="surah-number-badge">30</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الروم</h3>
+                    <p class="surah-transliteration">AR-ROOM</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 60
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="لقمان" data-en="Luqman" data-trans="LUQMAAN" data-number="31">
+           <button class="fav-star "
+        data-surah-id="31"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/31" class="surah-card-link">
+                <div class="surah-number-badge">31</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة لقمان</h3>
+                    <p class="surah-transliteration">LUQMAAN</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 34
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="السجدة" data-en="As-Sajda" data-trans="AS-SAJDAH" data-number="32">
+           <button class="fav-star "
+        data-surah-id="32"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/32" class="surah-card-link">
+                <div class="surah-number-badge">32</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة السجدة</h3>
+                    <p class="surah-transliteration">AS-SAJDAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 30
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الأحزاب" data-en="Al-Ahzab" data-trans="AL-AHZAAB" data-number="33">
+           <button class="fav-star "
+        data-surah-id="33"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/33" class="surah-card-link">
+                <div class="surah-number-badge">33</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الأحزاب</h3>
+                    <p class="surah-transliteration">AL-AHZAAB</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 73
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="سبأ" data-en="Saba" data-trans="SABA" data-number="34">
+           <button class="fav-star "
+        data-surah-id="34"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/34" class="surah-card-link">
+                <div class="surah-number-badge">34</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة سبأ</h3>
+                    <p class="surah-transliteration">SABA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 54
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="فاطر" data-en="Fatir" data-trans="FAATIR" data-number="35">
+           <button class="fav-star "
+        data-surah-id="35"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/35" class="surah-card-link">
+                <div class="surah-number-badge">35</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة فاطر</h3>
+                    <p class="surah-transliteration">FAATIR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 45
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="يس" data-en="Ya-Sin" data-trans="YASEEN" data-number="36">
+           <button class="fav-star "
+        data-surah-id="36"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/36" class="surah-card-link">
+                <div class="surah-number-badge">36</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة يس</h3>
+                    <p class="surah-transliteration">YASEEN</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 83
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الصافات" data-en="As-Saffat" data-trans="AS-SAAFFAAT" data-number="37">
+           <button class="fav-star "
+        data-surah-id="37"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/37" class="surah-card-link">
+                <div class="surah-number-badge">37</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الصافات</h3>
+                    <p class="surah-transliteration">AS-SAAFFAAT</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 182
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="ص" data-en="Sad" data-trans="SAAD" data-number="38">
+           <button class="fav-star "
+        data-surah-id="38"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/38" class="surah-card-link">
+                <div class="surah-number-badge">38</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة ص</h3>
+                    <p class="surah-transliteration">SAAD</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 88
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الزمر" data-en="Az-Zumar" data-trans="AZ-ZUMAR" data-number="39">
+           <button class="fav-star "
+        data-surah-id="39"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/39" class="surah-card-link">
+                <div class="surah-number-badge">39</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الزمر</h3>
+                    <p class="surah-transliteration">AZ-ZUMAR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 75
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="غافر" data-en="Ghafir" data-trans="GHAAFIR" data-number="40">
+           <button class="fav-star "
+        data-surah-id="40"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/40" class="surah-card-link">
+                <div class="surah-number-badge">40</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة غافر</h3>
+                    <p class="surah-transliteration">GHAAFIR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 85
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="فصلت" data-en="Fussilat" data-trans="FUSSILAT" data-number="41">
+           <button class="fav-star "
+        data-surah-id="41"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/41" class="surah-card-link">
+                <div class="surah-number-badge">41</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة فصلت</h3>
+                    <p class="surah-transliteration">FUSSILAT</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 54
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الشورى" data-en="Ash-Shura" data-trans="ASH-SHURA" data-number="42">
+           <button class="fav-star "
+        data-surah-id="42"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/42" class="surah-card-link">
+                <div class="surah-number-badge">42</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الشورى</h3>
+                    <p class="surah-transliteration">ASH-SHURA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 53
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الزخرف" data-en="Az-Zukhruf" data-trans="AZ-ZUKHRUF" data-number="43">
+           <button class="fav-star "
+        data-surah-id="43"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/43" class="surah-card-link">
+                <div class="surah-number-badge">43</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الزخرف</h3>
+                    <p class="surah-transliteration">AZ-ZUKHRUF</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 89
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الدخان" data-en="Ad-Dukhan" data-trans="AD-DUKHAAN" data-number="44">
+           <button class="fav-star "
+        data-surah-id="44"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/44" class="surah-card-link">
+                <div class="surah-number-badge">44</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الدخان</h3>
+                    <p class="surah-transliteration">AD-DUKHAAN</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 59
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الجاثية" data-en="Al-Jathiya" data-trans="AL-JAATHIYA" data-number="45">
+           <button class="fav-star "
+        data-surah-id="45"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/45" class="surah-card-link">
+                <div class="surah-number-badge">45</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الجاثية</h3>
+                    <p class="surah-transliteration">AL-JAATHIYA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 37
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الأحقاف" data-en="Al-Ahqaf" data-trans="AL-AHQAAF" data-number="46">
+           <button class="fav-star "
+        data-surah-id="46"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/46" class="surah-card-link">
+                <div class="surah-number-badge">46</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الأحقاف</h3>
+                    <p class="surah-transliteration">AL-AHQAAF</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 35
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="محمد" data-en="Muhammad" data-trans="MUHAMMAD" data-number="47">
+           <button class="fav-star "
+        data-surah-id="47"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/47" class="surah-card-link">
+                <div class="surah-number-badge">47</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة محمد</h3>
+                    <p class="surah-transliteration">MUHAMMAD</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 38
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الفتح" data-en="Al-Fath" data-trans="AL-FATH" data-number="48">
+           <button class="fav-star "
+        data-surah-id="48"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/48" class="surah-card-link">
+                <div class="surah-number-badge">48</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الفتح</h3>
+                    <p class="surah-transliteration">AL-FATH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 29
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الحجرات" data-en="Al-Hujurat" data-trans="AL-HUJURAAT" data-number="49">
+           <button class="fav-star "
+        data-surah-id="49"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/49" class="surah-card-link">
+                <div class="surah-number-badge">49</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الحجرات</h3>
+                    <p class="surah-transliteration">AL-HUJURAAT</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 18
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="ق" data-en="Qaf" data-trans="QAAF" data-number="50">
+           <button class="fav-star "
+        data-surah-id="50"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/50" class="surah-card-link">
+                <div class="surah-number-badge">50</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة ق</h3>
+                    <p class="surah-transliteration">QAAF</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 45
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الذاريات" data-en="Adh-Dhariyat" data-trans="ADH-DHAARIYAAT" data-number="51">
+           <button class="fav-star "
+        data-surah-id="51"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/51" class="surah-card-link">
+                <div class="surah-number-badge">51</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الذاريات</h3>
+                    <p class="surah-transliteration">ADH-DHAARIYAAT</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 60
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الطور" data-en="At-Tur" data-trans="AT-TOOR" data-number="52">
+           <button class="fav-star "
+        data-surah-id="52"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/52" class="surah-card-link">
+                <div class="surah-number-badge">52</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الطور</h3>
+                    <p class="surah-transliteration">AT-TOOR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 49
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="النجم" data-en="An-Najm" data-trans="AN-NAJM" data-number="53">
+           <button class="fav-star "
+        data-surah-id="53"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/53" class="surah-card-link">
+                <div class="surah-number-badge">53</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة النجم</h3>
+                    <p class="surah-transliteration">AN-NAJM</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 62
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="القمر" data-en="Al-Qamar" data-trans="AL-QAMAR" data-number="54">
+           <button class="fav-star "
+        data-surah-id="54"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/54" class="surah-card-link">
+                <div class="surah-number-badge">54</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة القمر</h3>
+                    <p class="surah-transliteration">AL-QAMAR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 55
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الرحمن" data-en="Ar-Rahman" data-trans="AR-RAHMAAN" data-number="55">
+           <button class="fav-star "
+        data-surah-id="55"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/55" class="surah-card-link">
+                <div class="surah-number-badge">55</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الرحمن</h3>
+                    <p class="surah-transliteration">AR-RAHMAAN</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 78
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الواقعة" data-en="Al-Waqia" data-trans="AL-WAAQI&#39;AH" data-number="56">
+           <button class="fav-star "
+        data-surah-id="56"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/56" class="surah-card-link">
+                <div class="surah-number-badge">56</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الواقعة</h3>
+                    <p class="surah-transliteration">AL-WAAQI&#39;AH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 96
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الحديد" data-en="Al-Hadid" data-trans="AL-HADEED" data-number="57">
+           <button class="fav-star "
+        data-surah-id="57"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/57" class="surah-card-link">
+                <div class="surah-number-badge">57</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الحديد</h3>
+                    <p class="surah-transliteration">AL-HADEED</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 29
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="المجادلة" data-en="Al-Mujadila" data-trans="AL-MUJAADILAH" data-number="58">
+           <button class="fav-star "
+        data-surah-id="58"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/58" class="surah-card-link">
+                <div class="surah-number-badge">58</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة المجادلة</h3>
+                    <p class="surah-transliteration">AL-MUJAADILAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 22
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الحشر" data-en="Al-Hashr" data-trans="AL-HASHR" data-number="59">
+           <button class="fav-star "
+        data-surah-id="59"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/59" class="surah-card-link">
+                <div class="surah-number-badge">59</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الحشر</h3>
+                    <p class="surah-transliteration">AL-HASHR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 24
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الممتحنة" data-en="Al-Mumtahanah" data-trans="AL-MUMTAHANAH" data-number="60">
+           <button class="fav-star "
+        data-surah-id="60"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/60" class="surah-card-link">
+                <div class="surah-number-badge">60</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الممتحنة</h3>
+                    <p class="surah-transliteration">AL-MUMTAHANAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 13
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الصف" data-en="As-Saff" data-trans="AS-SAFF" data-number="61">
+           <button class="fav-star "
+        data-surah-id="61"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/61" class="surah-card-link">
+                <div class="surah-number-badge">61</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الصف</h3>
+                    <p class="surah-transliteration">AS-SAFF</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 14
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الجمعة" data-en="Al-Jumuah" data-trans="AL-JUMUAH" data-number="62">
+           <button class="fav-star "
+        data-surah-id="62"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/62" class="surah-card-link">
+                <div class="surah-number-badge">62</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الجمعة</h3>
+                    <p class="surah-transliteration">AL-JUMUAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 11
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="المنافقون" data-en="Al-Munafiqun" data-trans="AL-MUNAAFIQOON" data-number="63">
+           <button class="fav-star "
+        data-surah-id="63"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/63" class="surah-card-link">
+                <div class="surah-number-badge">63</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة المنافقون</h3>
+                    <p class="surah-transliteration">AL-MUNAAFIQOON</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 11
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="التغابن" data-en="At-Taghabun" data-trans="AT-TAGHAABUN" data-number="64">
+           <button class="fav-star "
+        data-surah-id="64"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/64" class="surah-card-link">
+                <div class="surah-number-badge">64</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة التغابن</h3>
+                    <p class="surah-transliteration">AT-TAGHAABUN</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 18
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الطلاق" data-en="At-Talaq" data-trans="AT-TALAAQ" data-number="65">
+           <button class="fav-star "
+        data-surah-id="65"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/65" class="surah-card-link">
+                <div class="surah-number-badge">65</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الطلاق</h3>
+                    <p class="surah-transliteration">AT-TALAAQ</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 12
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="التحريم" data-en="At-Tahrim" data-trans="AT-TAHRIM" data-number="66">
+           <button class="fav-star "
+        data-surah-id="66"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/66" class="surah-card-link">
+                <div class="surah-number-badge">66</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة التحريم</h3>
+                    <p class="surah-transliteration">AT-TAHRIM</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 12
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الملك" data-en="Al-Mulk" data-trans="AL-MULK" data-number="67">
+           <button class="fav-star "
+        data-surah-id="67"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/67" class="surah-card-link">
+                <div class="surah-number-badge">67</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الملك</h3>
+                    <p class="surah-transliteration">AL-MULK</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 30
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="القلم" data-en="Al-Qalam" data-trans="AL-QALAM" data-number="68">
+           <button class="fav-star "
+        data-surah-id="68"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/68" class="surah-card-link">
+                <div class="surah-number-badge">68</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة القلم</h3>
+                    <p class="surah-transliteration">AL-QALAM</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 52
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الحاقة" data-en="Al-Haaqqa" data-trans="AL-HAAQQAH" data-number="69">
+           <button class="fav-star "
+        data-surah-id="69"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/69" class="surah-card-link">
+                <div class="surah-number-badge">69</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الحاقة</h3>
+                    <p class="surah-transliteration">AL-HAAQQAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 52
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="المعارج" data-en="Al-Maarij" data-trans="AL-MA&#39;AARIJ" data-number="70">
+           <button class="fav-star "
+        data-surah-id="70"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/70" class="surah-card-link">
+                <div class="surah-number-badge">70</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة المعارج</h3>
+                    <p class="surah-transliteration">AL-MA&#39;AARIJ</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 44
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="نوح" data-en="Nuh" data-trans="NOOH" data-number="71">
+           <button class="fav-star "
+        data-surah-id="71"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/71" class="surah-card-link">
+                <div class="surah-number-badge">71</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة نوح</h3>
+                    <p class="surah-transliteration">NOOH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 28
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الجن" data-en="Al-Jinn" data-trans="AL-JINN" data-number="72">
+           <button class="fav-star "
+        data-surah-id="72"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/72" class="surah-card-link">
+                <div class="surah-number-badge">72</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الجن</h3>
+                    <p class="surah-transliteration">AL-JINN</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 28
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="المزمل" data-en="Al-Muzzammil" data-trans="AL-MUZAMMIL" data-number="73">
+           <button class="fav-star "
+        data-surah-id="73"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/73" class="surah-card-link">
+                <div class="surah-number-badge">73</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة المزمل</h3>
+                    <p class="surah-transliteration">AL-MUZAMMIL</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 20
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="المدثر" data-en="Al-Muddaththir" data-trans="AL-MUDDATHTHIR" data-number="74">
+           <button class="fav-star "
+        data-surah-id="74"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/74" class="surah-card-link">
+                <div class="surah-number-badge">74</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة المدثر</h3>
+                    <p class="surah-transliteration">AL-MUDDATHTHIR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 56
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="القيامة" data-en="Al-Qiyamah" data-trans="AL-QIYAAMAH" data-number="75">
+           <button class="fav-star "
+        data-surah-id="75"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/75" class="surah-card-link">
+                <div class="surah-number-badge">75</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة القيامة</h3>
+                    <p class="surah-transliteration">AL-QIYAAMAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 40
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الإنسان" data-en="Al-Insan" data-trans="AL-INSAAN" data-number="76">
+           <button class="fav-star "
+        data-surah-id="76"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/76" class="surah-card-link">
+                <div class="surah-number-badge">76</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الإنسان</h3>
+                    <p class="surah-transliteration">AL-INSAAN</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 31
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="المرسلات" data-en="Al-Mursalat" data-trans="AL-MURSALAAT" data-number="77">
+           <button class="fav-star "
+        data-surah-id="77"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/77" class="surah-card-link">
+                <div class="surah-number-badge">77</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة المرسلات</h3>
+                    <p class="surah-transliteration">AL-MURSALAAT</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 50
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="النبأ" data-en="An-Naba" data-trans="AN-NABAA" data-number="78">
+           <button class="fav-star "
+        data-surah-id="78"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/78" class="surah-card-link">
+                <div class="surah-number-badge">78</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة النبأ</h3>
+                    <p class="surah-transliteration">AN-NABAA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 40
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="النازعات" data-en="An-Naziat" data-trans="AN-NAZI&#39;AAT" data-number="79">
+           <button class="fav-star "
+        data-surah-id="79"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/79" class="surah-card-link">
+                <div class="surah-number-badge">79</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة النازعات</h3>
+                    <p class="surah-transliteration">AN-NAZI&#39;AAT</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 46
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="عبس" data-en="Abasa" data-trans="ABASA" data-number="80">
+           <button class="fav-star "
+        data-surah-id="80"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/80" class="surah-card-link">
+                <div class="surah-number-badge">80</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة عبس</h3>
+                    <p class="surah-transliteration">ABASA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 42
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="التكوير" data-en="At-Takwir" data-trans="AT-TAKWEER" data-number="81">
+           <button class="fav-star "
+        data-surah-id="81"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/81" class="surah-card-link">
+                <div class="surah-number-badge">81</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة التكوير</h3>
+                    <p class="surah-transliteration">AT-TAKWEER</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 29
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الانفطار" data-en="Al-Infitar" data-trans="AL-INFITAAR" data-number="82">
+           <button class="fav-star "
+        data-surah-id="82"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/82" class="surah-card-link">
+                <div class="surah-number-badge">82</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الانفطار</h3>
+                    <p class="surah-transliteration">AL-INFITAAR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 19
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="المطففين" data-en="Al-Mutaffifin" data-trans="AL-MUTAFFIFEEN" data-number="83">
+           <button class="fav-star "
+        data-surah-id="83"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/83" class="surah-card-link">
+                <div class="surah-number-badge">83</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة المطففين</h3>
+                    <p class="surah-transliteration">AL-MUTAFFIFEEN</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 36
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الانشقاق" data-en="Al-Inshiqaq" data-trans="AL-INSHIQAAQ" data-number="84">
+           <button class="fav-star "
+        data-surah-id="84"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/84" class="surah-card-link">
+                <div class="surah-number-badge">84</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الانشقاق</h3>
+                    <p class="surah-transliteration">AL-INSHIQAAQ</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 25
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="البروج" data-en="Al-Buruj" data-trans="AL-BUROOJ" data-number="85">
+           <button class="fav-star "
+        data-surah-id="85"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/85" class="surah-card-link">
+                <div class="surah-number-badge">85</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة البروج</h3>
+                    <p class="surah-transliteration">AL-BUROOJ</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 22
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الطارق" data-en="At-Tariq" data-trans="AT-TAARIQ" data-number="86">
+           <button class="fav-star "
+        data-surah-id="86"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/86" class="surah-card-link">
+                <div class="surah-number-badge">86</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الطارق</h3>
+                    <p class="surah-transliteration">AT-TAARIQ</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 17
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الأعلى" data-en="Al-Ala" data-trans="AL-A&#39;LAA" data-number="87">
+           <button class="fav-star "
+        data-surah-id="87"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/87" class="surah-card-link">
+                <div class="surah-number-badge">87</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الأعلى</h3>
+                    <p class="surah-transliteration">AL-A&#39;LAA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 19
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الغاشية" data-en="Al-Ghashiyah" data-trans="AL-GHAASHIYAH" data-number="88">
+           <button class="fav-star "
+        data-surah-id="88"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/88" class="surah-card-link">
+                <div class="surah-number-badge">88</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الغاشية</h3>
+                    <p class="surah-transliteration">AL-GHAASHIYAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 26
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الفجر" data-en="Al-Fajr" data-trans="AL-FAJR" data-number="89">
+           <button class="fav-star "
+        data-surah-id="89"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/89" class="surah-card-link">
+                <div class="surah-number-badge">89</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الفجر</h3>
+                    <p class="surah-transliteration">AL-FAJR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 30
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="البلد" data-en="Al-Balad" data-trans="AL-BALAD" data-number="90">
+           <button class="fav-star "
+        data-surah-id="90"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/90" class="surah-card-link">
+                <div class="surah-number-badge">90</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة البلد</h3>
+                    <p class="surah-transliteration">AL-BALAD</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 20
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الشمس" data-en="Ash-Shams" data-trans="ASH-SHAMS" data-number="91">
+           <button class="fav-star "
+        data-surah-id="91"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/91" class="surah-card-link">
+                <div class="surah-number-badge">91</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الشمس</h3>
+                    <p class="surah-transliteration">ASH-SHAMS</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 15
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الليل" data-en="Al-Lail" data-trans="AL-LAYL" data-number="92">
+           <button class="fav-star "
+        data-surah-id="92"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/92" class="surah-card-link">
+                <div class="surah-number-badge">92</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الليل</h3>
+                    <p class="surah-transliteration">AL-LAYL</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 21
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الضحى" data-en="Ad-Duha" data-trans="AD-DUHAA" data-number="93">
+           <button class="fav-star "
+        data-surah-id="93"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/93" class="surah-card-link">
+                <div class="surah-number-badge">93</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الضحى</h3>
+                    <p class="surah-transliteration">AD-DUHAA</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 11
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الشرح" data-en="Ash-Sharh" data-trans="ASH-SHARH" data-number="94">
+           <button class="fav-star "
+        data-surah-id="94"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/94" class="surah-card-link">
+                <div class="surah-number-badge">94</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الشرح</h3>
+                    <p class="surah-transliteration">ASH-SHARH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 8
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="التين" data-en="At-Tin" data-trans="AT-TEEN" data-number="95">
+           <button class="fav-star "
+        data-surah-id="95"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/95" class="surah-card-link">
+                <div class="surah-number-badge">95</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة التين</h3>
+                    <p class="surah-transliteration">AT-TEEN</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 8
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="العلق" data-en="Al-Alaq" data-trans="AL-ALAQ" data-number="96">
+           <button class="fav-star "
+        data-surah-id="96"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/96" class="surah-card-link">
+                <div class="surah-number-badge">96</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة العلق</h3>
+                    <p class="surah-transliteration">AL-ALAQ</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 19
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="القدر" data-en="Al-Qadr" data-trans="AL-QADR" data-number="97">
+           <button class="fav-star "
+        data-surah-id="97"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/97" class="surah-card-link">
+                <div class="surah-number-badge">97</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة القدر</h3>
+                    <p class="surah-transliteration">AL-QADR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 5
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="البينة" data-en="Al-Bayyinah" data-trans="AL-BAYYINAH" data-number="98">
+           <button class="fav-star "
+        data-surah-id="98"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/98" class="surah-card-link">
+                <div class="surah-number-badge">98</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة البينة</h3>
+                    <p class="surah-transliteration">AL-BAYYINAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 8
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الزلزلة" data-en="Az-Zalzalah" data-trans="AZ-ZALZALAH" data-number="99">
+           <button class="fav-star "
+        data-surah-id="99"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/99" class="surah-card-link">
+                <div class="surah-number-badge">99</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الزلزلة</h3>
+                    <p class="surah-transliteration">AZ-ZALZALAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 8
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="العاديات" data-en="Al-Adiyat" data-trans="AL-ADIYAAT" data-number="100">
+           <button class="fav-star "
+        data-surah-id="100"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/100" class="surah-card-link">
+                <div class="surah-number-badge">100</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة العاديات</h3>
+                    <p class="surah-transliteration">AL-ADIYAAT</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 11
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="القارعة" data-en="Al-Qariah" data-trans="AL-QAARI&#39;AH" data-number="101">
+           <button class="fav-star "
+        data-surah-id="101"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/101" class="surah-card-link">
+                <div class="surah-number-badge">101</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة القارعة</h3>
+                    <p class="surah-transliteration">AL-QAARI&#39;AH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 11
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="التكاثر" data-en="At-Takathur" data-trans="AT-TAKAATHUR" data-number="102">
+           <button class="fav-star "
+        data-surah-id="102"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/102" class="surah-card-link">
+                <div class="surah-number-badge">102</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة التكاثر</h3>
+                    <p class="surah-transliteration">AT-TAKAATHUR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 8
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="العصر" data-en="Al-Asr" data-trans="AL-ASR" data-number="103">
+           <button class="fav-star "
+        data-surah-id="103"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/103" class="surah-card-link">
+                <div class="surah-number-badge">103</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة العصر</h3>
+                    <p class="surah-transliteration">AL-ASR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 3
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الهمزة" data-en="Al-Humazah" data-trans="AL-HUMAZAH" data-number="104">
+           <button class="fav-star "
+        data-surah-id="104"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/104" class="surah-card-link">
+                <div class="surah-number-badge">104</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الهمزة</h3>
+                    <p class="surah-transliteration">AL-HUMAZAH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 9
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الفيل" data-en="Al-Fil" data-trans="AL-FEEL" data-number="105">
+           <button class="fav-star "
+        data-surah-id="105"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/105" class="surah-card-link">
+                <div class="surah-number-badge">105</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الفيل</h3>
+                    <p class="surah-transliteration">AL-FEEL</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 5
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="قريش" data-en="Quraysh" data-trans="QURAISH" data-number="106">
+           <button class="fav-star "
+        data-surah-id="106"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/106" class="surah-card-link">
+                <div class="surah-number-badge">106</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة قريش</h3>
+                    <p class="surah-transliteration">QURAISH</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 4
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الماعون" data-en="Al-Maun" data-trans="AL-MAOON" data-number="107">
+           <button class="fav-star "
+        data-surah-id="107"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/107" class="surah-card-link">
+                <div class="surah-number-badge">107</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الماعون</h3>
+                    <p class="surah-transliteration">AL-MAOON</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 7
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الكوثر" data-en="Al-Kawthar" data-trans="AL-KAWTHAR" data-number="108">
+           <button class="fav-star "
+        data-surah-id="108"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/108" class="surah-card-link">
+                <div class="surah-number-badge">108</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الكوثر</h3>
+                    <p class="surah-transliteration">AL-KAWTHAR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 3
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الكافرون" data-en="Al-Kafirun" data-trans="AL-KAAFIROON" data-number="109">
+           <button class="fav-star "
+        data-surah-id="109"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/109" class="surah-card-link">
+                <div class="surah-number-badge">109</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الكافرون</h3>
+                    <p class="surah-transliteration">AL-KAAFIROON</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 6
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="النصر" data-en="An-Nasr" data-trans="AN-NASR" data-number="110">
+           <button class="fav-star "
+        data-surah-id="110"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/110" class="surah-card-link">
+                <div class="surah-number-badge">110</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة النصر</h3>
+                    <p class="surah-transliteration">AN-NASR</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 3
+                        </span>
+                        <span class="revelation-type madinah">
+                            مدنية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="المسد" data-en="Al-Masad" data-trans="AL-MASAD" data-number="111">
+           <button class="fav-star "
+        data-surah-id="111"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/111" class="surah-card-link">
+                <div class="surah-number-badge">111</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة المسد</h3>
+                    <p class="surah-transliteration">AL-MASAD</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 5
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الإخلاص" data-en="Al-Ikhlas" data-trans="AL-IKHLAAS" data-number="112">
+           <button class="fav-star "
+        data-surah-id="112"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/112" class="surah-card-link">
+                <div class="surah-number-badge">112</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الإخلاص</h3>
+                    <p class="surah-transliteration">AL-IKHLAAS</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 4
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الفلق" data-en="Al-Falaq" data-trans="AL-FALAQ" data-number="113">
+           <button class="fav-star "
+        data-surah-id="113"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/113" class="surah-card-link">
+                <div class="surah-number-badge">113</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الفلق</h3>
+                    <p class="surah-transliteration">AL-FALAQ</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 5
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="surah-card" data-name="الناس" data-en="An-Nas" data-trans="AN-NAAS" data-number="114">
+           <button class="fav-star "
+        data-surah-id="114"
+        title="إضافة للمفضلة">
+    <i class="far fa-star"></i>
+                 </button>
+            <a href="/surah/114" class="surah-card-link">
+                <div class="surah-number-badge">114</div>
+                <div class="surah-card-content">
+                    <h3 class="surah-name">سورة الناس</h3>
+                    <p class="surah-transliteration">AN-NAAS</p>
+                    <div class="surah-meta">
+                        <span class="verse-count">
+                            <i class="fas fa-book"></i>
+                            عدد آيات 6
+                        </span>
+                        <span class="revelation-type makkah">
+                            مكية
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+    </div>
+
+    
+</section>
+
+    </main>
+
+    <!-- Audio Player (Fixed Bottom) -->
+    <div class="audio-player" id="audioPlayer" style="display: none;">
+        <div class="audio-player-container">
+            <div class="audio-info">
+                <span class="audio-label">الآن يُقرأ:</span>
+                <span class="audio-title" id="audioTitle">سورة الفاتحة</span>
+            </div>
+
+            <div class="audio-controls">
+                <!-- تشغيل السورة التالية تلقائيًا -->
+                <button class="audio-btn audio-extra-btn"
+                        id="autoNextSurahBtn"
+                        title="تشغيل السورة التالية تلقائيًا">
+                    <i class="fas fa-forward"></i>
+                </button>
+
+                <!-- السابق -->
+                <button class="audio-btn" id="prevBtn" title="السابق">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+
+                <!-- تشغيل / إيقاف -->
+                <button class="audio-btn audio-play" id="playPauseBtn" title="تشغيل/إيقاف">
+                    <i class="fas fa-play" id="playPauseIcon"></i>
+                </button>
+
+                <!-- التالي -->
+                <button class="audio-btn" id="nextBtn" title="التالي">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+
+                <!-- تكرار السورة -->
+                <button class="audio-btn audio-extra-btn"
+                        id="repeatSurahBtn"
+                        title="تكرار السورة">
+                    <i class="fas fa-repeat"></i>
+                </button>
+            </div>
+            <div class="audio-progress-section">
+                <select class="reciter-select" id="reciterSelect" title="اختر القارئ">
+                    
+                    <option value="1" data-identifier="Minshawy_Murattal_128kbps">محمد صديق المنشاوي</option>
+                    
+                    <option value="2" data-identifier="Husary_128kbps">محمود خليل الحصري</option>
+                    
+                    <option value="3" data-identifier="Alafasy_128kbps">مشاري راشد العفاسي</option>
+                    
+                    <option value="4" data-identifier="Abdul_Basit_Mujawwad_128kbps">عبد الباسط عبد الصمد</option>
+                    
+                    <option value="5" data-identifier="Qatami">ناصر القطامي</option>
+                    
+                    <option value="6" data-identifier="Yasser_Ad-Dussary_128kbps">ياسر الدوسري</option>
+                    
+                    <option value="7" data-identifier="MaherAlMuaiqly128kbps">ماهر المعيقلي</option>
+                    
+                    <option value="8" data-identifier="Abdurrahmaan_As-Sudais_192kbps">عبد الرحمن السديس</option>
+                    
+                    <option value="9" data-identifier="Saood_ash-Shuraym_128kbps">سعود الشريم</option>
+                    
+                    <option value="10" data-identifier="Abu_Bakr_Ash-Shaatree_128kbps">أبو بكر الشاطري</option>
+                    
+                    <option value="11" data-identifier="Fares_Abbad_64kbps">فارس عباد</option>
+                    
+                    <option value="12" data-identifier="Ahmed_ibn_Ali_al-Ajamy_128kbps_ketaballah.net">أحمد العجمي</option>
+                    
+                    <option value="13" data-identifier="Ghamadi_40kbps">سعد الغامدي</option>
+                    
+                    <option value="14" data-identifier="Muhammad_Ayyoub_128kbps">محمد أيوب</option>
+                    
+                    <option value="15" data-identifier="FULL_Hazem_Seif">حازم سيف</option>
+                    
+                </select>
+                <div class="progress-container">
+                    <input type="range" class="progress-bar" id="progressBar" value="0" min="0" max="100" title="تقدم التلاوة">
+                </div>
+                <span class="audio-time" id="audioTime">00:00 / 00:00</span>
+            </div>
+            <button class="audio-close" id="closeAudioPlayer" title="إغلاق">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <audio id="audioElement" preload="none"></audio>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <!-- التواصل -->
+            <div class="footer-col">
+                <h3>تواصل معنا</h3>
+
+                <a href="mailto:abozaydamahmoud479@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                    البريد الإلكتروني
+                </a>
+
+                <a href="https://wa.me/201019719363" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    واتساب
+                </a>
+
+                <a href="https://www.facebook.com/mahmoud.abozayda.2025/?locale=ar_AR" target="_blank">
+                    <i class="fa-brands fa-facebook"></i>
+                    فيسبوك
+                </a>
+            </div>
+
+            <!-- أقسام الموقع -->
+            <div class="footer-col">
+                <h3>أبرز الأقسام</h3>
+
+                <a href="/mushaf">المصحف</a>
+                <a href="/adhkar">الأذكار</a>
+                <a href="/tasbeeh">التسبيح</a>
+            </div>
+
+            <!-- عن الموقع -->
+            <div class="footer-col">
+                <h3>عن الموقع</h3>
+
+                <p class="footer-main">
+                    صُمم بإخلاص بواسطة Mahmoud Abdelrahman
+                </p>
+
+                <p class="footer-dua">
+                    صدقة جارية لروح أخي سعيد 🤍
+                    <br>
+                    نسألكم الدعاء له ولموتى المسلمين 🤲
+                </p>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function () {
+                        console.log('✅ Service Worker registered');
+                    })
+                    .catch(function (error) {
+                        console.log('❌ Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+
+</body>
+
+</html>
